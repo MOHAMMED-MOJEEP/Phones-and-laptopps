@@ -152,8 +152,17 @@ function vitePluginManusDebugCollector(): Plugin {
 
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
 
+// =============================================================================
+// إعدادات Vite الرئيسية - معدلة للنشر على GitHub Pages
+// =============================================================================
+
 export default defineConfig({
+  // ✅ 1. أساس المسار - ضروري ليعمل المشروع على GitHub Pages
+  base: '/Phones-and-laptopps/',
+  
   plugins,
+  
+  // ✅ 2. إعدادات حل المسارات (كما هي بدون تغيير)
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -161,15 +170,33 @@ export default defineConfig({
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
+  
   envDir: path.resolve(import.meta.dirname),
+  
+  // ✅ 3. المجلد الجذر (client)
   root: path.resolve(import.meta.dirname, "client"),
+  
+  // ✅ 4. إعدادات البناء - مهمة للنشر
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    // ✅ إضافة خيارات لتحسين التوافق مع GitHub Pages
+    target: 'es2020', // يدعم معظم المتصفحات الحديثة
+    chunkSizeWarningLimit: 1000, // تجاهل تحذيرات حجم الملفات الكبيرة
+    rollupOptions: {
+      output: {
+        // ✅ تنظيم الملفات الناتجة
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'js/[name]-[hash].js',
+        entryFileNames: 'js/[name]-[hash].js',
+      },
+    },
   },
+  
+  // ✅ 5. إعدادات السيرفر المحلي (للتطوير فقط)
   server: {
     port: 3000,
-    strictPort: false, // Will find next available port if 3000 is busy
+    strictPort: false,
     host: true,
     allowedHosts: [
       ".manuspre.computer",
@@ -184,5 +211,15 @@ export default defineConfig({
       strict: true,
       deny: ["**/.*"],
     },
+  },
+  
+  // ✅ 6. إعدادات إضافية لتحسين التوافق مع GitHub Pages
+  // تجاهل بعض الملفات والمجلدات من عملية البناء
+  publicDir: path.resolve(import.meta.dirname, "client/public"),
+  
+  // ✅ 7. إعدادات المعاينة
+  preview: {
+    port: 4173,
+    host: true,
   },
 });
