@@ -1,0 +1,347 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ============================================
+   الألوان الرئيسية - نظام الفخامة
+   ============================================ */
+:root {
+  /* الألوان الأساسية - أزرق عميق وذهبي */
+  --primary: #1E3A5F; /* أزرق عميق فاخر */
+  --primary-foreground: #FFFFFF; /* أبيض نقي */
+  --secondary: #D4AF37; /* ذهبي دافئ */
+  --secondary-foreground: #0F0F0F; /* أسود عميق */
+  
+  /* الألوان الأساسية للواجهة */
+  --background: #FFFFFF; /* أبيض نقي */
+  --foreground: #0F0F0F; /* أسود عميق */
+  --card: #FFFFFF; /* أبيض نقي */
+  --card-foreground: #0F0F0F; /* أسود عميق */
+  --popover: #FFFFFF; /* أبيض نقي */
+  --popover-foreground: #0F0F0F; /* أسود عميق */
+  
+  /* الألوان الثانوية */
+  --muted: #F5F5F5; /* رمادي فاتح */
+  --muted-foreground: #666666; /* رمادي متوسط */
+  --accent: #D4AF37; /* ذهبي - للتركيز */
+  --accent-foreground: #0F0F0F; /* أسود */
+  
+  /* الألوان الخطرة */
+  --destructive: #EF4444; /* أحمر للحذف */
+  --destructive-foreground: #FFFFFF; /* أبيض */
+  
+  /* الحدود والمدخلات */
+  --border: #E5E5E5; /* رمادي فاتح جداً */
+  --input: #F5F5F5; /* رمادي فاتح */
+  --ring: #1E3A5F; /* أزرق عميق */
+  
+  /* الرسوم البيانية */
+  --chart-1: #1E3A5F; /* أزرق عميق */
+  --chart-2: #D4AF37; /* ذهبي */
+  --chart-3: #2D5A8C; /* أزرق أفتح */
+  --chart-4: #1A2F4A; /* أزرق أغمق */
+  --chart-5: #E8D5B7; /* ذهبي فاتح */
+  
+  /* الشريط الجانبي */
+  --sidebar: #FFFFFF; /* أبيض */
+  --sidebar-foreground: #0F0F0F; /* أسود */
+  --sidebar-primary: #1E3A5F; /* أزرق عميق */
+  --sidebar-primary-foreground: #FFFFFF; /* أبيض */
+  --sidebar-accent: #D4AF37; /* ذهبي */
+  --sidebar-accent-foreground: #0F0F0F; /* أسود */
+  --sidebar-border: #E5E5E5; /* رمادي فاتح */
+  --sidebar-ring: #1E3A5F; /* أزرق عميق */
+  
+  /* الزاوية المستديرة */
+  --radius: 0.65rem;
+}
+
+/* ============================================
+   القواعد الأساسية
+   ============================================ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Cairo', 'Inter', sans-serif;
+  }
+  
+  /* الخطوط - نظام الطباعة الفاخر */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', 'Cairo', serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+    font-weight: 700;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+    font-weight: 700;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+    font-weight: 600;
+  }
+  
+  p {
+    font-family: 'Cairo', 'Inter', sans-serif;
+    @apply text-base leading-relaxed;
+  }
+  
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+  
+  /* الحقول المدخلة */
+  input, textarea, select {
+    font-family: 'Cairo', 'Inter', sans-serif;
+  }
+}
+
+/* ============================================
+   المكونات المخصصة والتصميم الجمالي (Glassmorphism & Shadows)
+   ============================================ */
+@layer components {
+  /**
+   * حاوية مخصصة توسط المحتوى وتضيف حشوة استجابية
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+  
+  /* ============================================
+     أنماط مخصصة للمتجر (تصميم احترافي وجميل)
+     ============================================ */
+  
+  /* بطاقة المنتج - مع ظلال ناعمة وانتقالات سلسة وتأثير زجاجي */
+  .product-card {
+    @apply bg-card rounded-2xl overflow-hidden border border-border/50 flex flex-col transition-all duration-500 relative;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 0 3px rgba(0,0,0,0.02);
+    backdrop-filter: blur(10px);
+  }
+  
+  .product-card:hover {
+    @apply border-primary/20;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -5px rgba(30, 58, 95, 0.12), 0 8px 16px -4px rgba(30, 58, 95, 0.08);
+  }
+  
+  /* الأزرار الأساسية - مع تأثيرات تدرج وحركة */
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-[#2D5A8C] text-primary-foreground px-6 py-3 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2;
+    box-shadow: 0 4px 14px rgba(30, 58, 95, 0.25);
+  }
+  
+  .btn-primary:hover {
+    @apply from-[#162B47] to-primary scale-[1.02];
+    box-shadow: 0 6px 20px rgba(30, 58, 95, 0.4);
+  }
+  
+  .btn-primary:active {
+    @apply scale-[0.98];
+  }
+  
+  /* الأزرار الثانوية - بخطوط خارجية شفافة */
+  .btn-outline {
+    @apply border-2 border-primary text-primary px-6 py-3 rounded-xl font-bold hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-2;
+  }
+  
+  /* حقول الإدخال والبحث - ناعمة مع تأثير التركيز */
+  .form-input {
+    @apply w-full bg-input/50 border-2 border-transparent rounded-xl px-4 py-3 focus:outline-none focus:border-primary/50 focus:bg-background transition-all duration-300;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+  }
+  
+  .search-bar {
+    @apply w-full bg-background border-2 border-border rounded-full px-5 py-3 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-300;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  }
+  
+  /* عناوين الأقسام - مع تدرج لوني */
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-8 relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary;
+  }
+  
+  .section-title::after {
+    content: '';
+    @apply absolute -bottom-3 right-0 w-1/2 h-1 bg-gradient-to-r from-secondary to-transparent rounded-full;
+  }
+  
+  /* شبكة المنتجات */
+  .products-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8;
+  }
+
+  /* تأثيرات زجاجية للرأس (Header) */
+  .glass-header {
+    @apply bg-white/80 backdrop-blur-md border-b border-gray-200/50 shadow-sm sticky top-0 z-50;
+  }
+}
+
+/* ============================================
+   الحركات والانتقالات
+   ============================================ */
+@layer utilities {
+  /* انتقال سلس للعناصر */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  /* تأثير التكبير عند التمرير */
+  .hover-scale {
+    @apply hover:scale-105 transition-transform duration-300;
+  }
+  
+  /* تأثير الرفع عند التمرير */
+  .hover-lift {
+    @apply hover:-translate-y-1 transition-transform duration-300;
+  }
+  
+  /* تأثير الظل عند التمرير */
+  .hover-shadow {
+    @apply hover:shadow-lg transition-shadow duration-300;
+  }
+
+  /* Animations for Hero */
+  .animate-slow-pan {
+    animation: slowPan 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowPan {
+    0% { transform: scale(1.05) translate(0, 0); }
+    100% { transform: scale(1.1) translate(-2%, 2%); }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animate-scroll-down {
+    animation: scrollDown 2s infinite;
+  }
+
+  @keyframes scrollDown {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(12px); opacity: 0; }
+  }
+}
+
+/* ============================================
+   الاستجابة للأجهزة المختلفة
+   ============================================ */
+@media (max-width: 640px) {
+  h1 {
+    @apply text-3xl;
+  }
+  
+  h2 {
+    @apply text-2xl;
+  }
+  
+  .products-grid {
+    @apply grid-cols-1;
+  }
+}
